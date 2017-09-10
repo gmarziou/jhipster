@@ -19,11 +19,13 @@
 
 package io.github.jhipster.config;
 
-import java.util.*;
-import javax.validation.constraints.NotNull;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.cors.CorsConfiguration;
+
+import javax.validation.constraints.NotNull;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Properties specific to JHipster.
@@ -832,6 +834,36 @@ public class JHipsterProperties {
 
             public void setQueueSize(int queueSize) {
                 this.queueSize = queueSize;
+            }
+
+            private final SecurityLogging securityLogging = new SecurityLogging();
+
+            public SecurityLogging getSecurityLogging() {
+                return securityLogging;
+
+            }
+
+            public static class SecurityLogging {
+
+                private boolean enabled = false;
+
+                private String loggerName = "SECURITY";
+
+                public boolean isEnabled() {
+                    return enabled;
+                }
+
+                public void setEnabled(boolean enabled) {
+                    this.enabled = enabled;
+                }
+
+                public String getLoggerName() {
+                    return loggerName;
+                }
+
+                public void setLoggerName(String loggerName) {
+                    this.loggerName = loggerName;
+                }
             }
         }
 
